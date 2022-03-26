@@ -1,6 +1,9 @@
 import weatherData from './apis/weatherData';
 import setLocation from './apis/setLocation';
+import Header from './components/Header';
+import Main from './components/Main';
 import './App.css';
+
 
 function App() {
   const getLocation = async()=>{
@@ -18,11 +21,13 @@ function App() {
       console.log(data.data.weather[0].main)
     }catch(err){
       console.log(err)
+      
     }
   }
   return (
     <div className="App" onClick={getWeatherData}>
-      here
+      <Header/>
+      <Main />
     </div>
   );
 }
