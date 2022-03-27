@@ -15,8 +15,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 30px;
-  margin-left: 11px;
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
 }
 .header_hamburger-menu_btn,
 .header_hamburger-menu_btn:before,

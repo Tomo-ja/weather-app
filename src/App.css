@@ -6,7 +6,7 @@
 :root {
   --text-color-white: #f7fcfe;
 
-  --bg-color-white: #f7fcfe;
+  --bg-color-white: #fff;
   --bg-color-gray-700: #464646;
   --bg-color-gray-500: #616161;
   --bg-color-gray-300: #b4b4b4;
@@ -30,7 +30,7 @@ img {
 
 .app {
   width: 645px;
-  margin: 30px auto;
+  margin: 0px auto;
   font-family: "Roboto", sans-serif;
 }
 

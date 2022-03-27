@@ -8,6 +8,7 @@ import reloadIcon from '../images/icon_reload.svg'
 
 export default function Header(){
 	const [locationNow, setLocationNow] = React.useState({});
+	const [openSetLocation, setOpenSetLocation] = React.useState(false)
 
 	React.useEffect(()=>{
 		const locationInfo = JSON.parse(localStorage.getItem("locationInfo")) 
@@ -33,10 +34,17 @@ export default function Header(){
 		  console.log(err)
 		}
 	  }
+
+	  const toggleOpenSetLocation = ()=>{
+		setOpenSetLocation(!openSetLocation)
+		console.log(openSetLocation)
+	  }
 	
 	return(
 		<div className="outer header">
-			<div className="header_hamburger-menu">
+			<div 
+				onClick={toggleOpenSetLocation}
+				className="header_hamburger-menu">
 				<span className="header_hamburger-menu_btn"></span>
 			</div>
 			<h1 className="header_location-name location-name">{locationNow.cityName}, {locationNow.country}</h1>
@@ -44,7 +52,7 @@ export default function Header(){
 					src= {reloadIcon} 
 					alt="reload icon"
 					onClick={getLocation} />
-			<SetLocation />
+			{openSetLocation && <SetLocation />}
 		</div>
 	)
 }
