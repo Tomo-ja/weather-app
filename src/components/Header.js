@@ -1,5 +1,7 @@
 import React from "react";
 import setLocationApi from '../apis/setLocation'
+import SetLocation from "./SetLocation";
+
 import '../css/header.css';
 import reloadIcon from '../images/icon_reload.svg'
 
@@ -42,6 +44,7 @@ export default function Header(){
 					src= {reloadIcon} 
 					alt="reload icon"
 					onClick={getLocation} />
+			<SetLocation />
 		</div>
 	)
 }

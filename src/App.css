@@ -6,6 +6,7 @@
 :root {
   --text-color-white: #f7fcfe;
 
+  --bg-color-white: #f7fcfe;
   --bg-color-gray-700: #464646;
   --bg-color-gray-500: #616161;
   --bg-color-gray-300: #b4b4b4;
@@ -34,7 +35,9 @@ img {
 }
 
 .outer {
-  padding: 0 28px;
+  width: 100%;
+  padding-right: 28px;
+  padding-left: 28px;
 }
 .location-name {
   font-size: 24px;
@@ -43,4 +46,5 @@ img {
 }
 .icon {
   width: 14px;
+  height: 14px;
 }
