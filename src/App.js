@@ -5,15 +5,25 @@ import Header from './components/Header';
 import Main from './components/Main';
 import './App.css';
 
-export const locationData = React.createContext()
-export const weatherData = React.createContext()
+export const CurrentLocation = React.createContext()
+export const WeatherData = React.createContext()
+
+
 
 function App() {
+  const [locationNow, setlocationNow] = React.useState({});
+
+
   const getLocation = async()=>{
     try{
       const location = await setLocationApi.get('geo/1.0/direct?q=London&limit=&appid=748752212852e7cf71bcfcf6066d4ab0')
-      const { lat, lon} = location.data[0]
-      console.log(`${lat} and ${lon}`)
+      const { name, country, lat, lon} = location.data[0]
+      setlocationNow({
+        "cityName": name,
+        "country": country,
+        "lat": lat,
+        "lon": lon
+      })
     }catch(err){
       console.log(err)
     }
@@ -28,15 +38,15 @@ function App() {
     }
   }
   return (
-    <div className="app" onClick={getWeatherData}>
-      <locationData.Provider value="Vancouver" >
-        <weatherData.Provider>
+    <div className="app" onClick={getLocation}>
+      <CurrentLocation.Provider value={locationNow}>
+        {/* <weatherData.Provider> */}
           <Header/>
-        </weatherData.Provider>
-      </locationData.Provider>
-      <weatherData.Provider>
+        {/* </weatherData.Provider> */}
+      </CurrentLocation.Provider>
+      {/* <weatherData.Provider> */}
         <Main />
-      </weatherData.Provider>
+      {/* </weatherData.Provider> */}
     </div>
   );
 }
