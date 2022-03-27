@@ -40,13 +40,6 @@ export default function Header(){
 		setOpenSetLocation(!openSetLocation)
 		console.log(openSetLocation)
 	  }
-
-	  const transitionStyles = {
-		  entering: {},
-		  entered: {},
-		  exiting: {},
-		  exited: {}
-	  }
 	
 	return(
 		<div className="outer header">
@@ -60,13 +53,7 @@ export default function Header(){
 					src= {reloadIcon} 
 					alt="reload icon"
 					onClick={getLocation} />
-			<Transition in={openSetLocation} timeout={1000}>
-				{(state) => (
-					<div style={transitionStyles[state]}>
-						<SetLocation />
-					</div>
-				)}
-			</Transition>
+			{openSetLocation && <SetLocation />}
 		</div>
 	)
 }

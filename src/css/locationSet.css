@@ -1,14 +1,12 @@
 .set-location {
   position: absolute;
-  top: 0px;
+  top: 60px;
   left: 0;
-  height: auto;
-  margin-top: 60px;
-  /* padding-top: 20px;
-  padding-bottom: 20px; */
+  height: 500px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   background-color: var(--bg-color-gray-300);
   z-index: 5;
-  overflow: hidden;
 }
 
 .set-location_form {
