@@ -7,6 +7,15 @@ import reloadIcon from '../images/icon_reload.svg'
 export default function Header(){
 	const [locationNow, setLocationNow] = React.useState({});
 
+	React.useEffect(()=>{
+		const locationInfo = JSON.parse(localStorage.getItem("locationInfo")) 
+		setLocationNow(locationInfo)
+		console.log(locationInfo)
+	}, [])
+
+	React.useEffect(()=>{
+		localStorage.setItem("locationInfo", JSON.stringify(locationNow))
+	}, [locationNow])
 
 	const getLocation = async()=>{
 		try{
