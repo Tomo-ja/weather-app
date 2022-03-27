@@ -24,10 +24,17 @@ export default function SetLocation(){
 				<LocationCard city="Vancouber" country="Canada"/>
 			</div>
 			<div className="set-location_location-options saved-location">
-				<h2 className="set-location_location-options_category">Saved Location</h2>
-				<LocationCard city="Vancouber" country="Canada"/>
-				<LocationCard city="Vancouber" country="Canada"/>
-				<LocationCard city="Vancouber" country="Canada"/>
+				<h2 className="set-location_location-options_category set-location_location-options_saved">Saved Location</h2>
+				<LocationCard city="Vancouver" country="Canada"/>
+				<LocationCard city="Vancouver" country="Canada"/>
+				<LocationCard city="Vancouver" country="Canada"/>
+				<LocationCard city="Vancouver" country="Canada"/>
+				<LocationCard city="Vancouver" country="Canada"/>
+				<LocationCard city="Vancouver" country="Canada"/>
+				<LocationCard city="Vancouver" country="Canada"/>
+				<LocationCard city="Vancouver" country="Canada"/>
+				<LocationCard city="Vancouver" country="Canada"/>
+				<LocationCard city="Vancouver" country="Canada"/>
 			</div>
 		</div>
 	)

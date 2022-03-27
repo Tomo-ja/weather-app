@@ -1,4 +1,5 @@
 import React from "react";
+import { Transition } from "react-transition-group";
 import setLocationApi from '../apis/setLocation'
 import SetLocation from "./SetLocation";
 
@@ -39,6 +40,13 @@ export default function Header(){
 		setOpenSetLocation(!openSetLocation)
 		console.log(openSetLocation)
 	  }
+
+	  const transitionStyles = {
+		  entering: {},
+		  entered: {},
+		  exiting: {},
+		  exited: {}
+	  }
 	
 	return(
 		<div className="outer header">
@@ -52,7 +60,13 @@ export default function Header(){
 					src= {reloadIcon} 
 					alt="reload icon"
 					onClick={getLocation} />
-			{openSetLocation && <SetLocation />}
+			<Transition in={openSetLocation} timeout={1000}>
+				{(state) => (
+					<div style={transitionStyles[state]}>
+						<SetLocation />
+					</div>
+				)}
+			</Transition>
 		</div>
 	)
 }
