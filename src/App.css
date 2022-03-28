@@ -35,6 +35,7 @@ img {
 }
 .main {
   padding-top: 100px;
+  padding-bottom: 45px;
   background-color: var(--bg-color-gray-500);
 }
 
@@ -49,8 +50,8 @@ img {
   letter-spacing: -0.03em;
 }
 .icon {
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
 }
 .section {
   margin-bottom: 45px;

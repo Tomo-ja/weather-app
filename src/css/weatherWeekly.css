@@ -1,0 +1,43 @@
+.weather-weekly {
+  padding-top: 20px;
+}
+.weekly-card {
+  display: flex;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px var(--border-color-gray) dashed;
+}
+.weekly-card_dates {
+  margin-right: 30px;
+}
+.weekly-card_date {
+  text-align: center;
+}
+.weekly-card_dates_name {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 20px;
+}
+.weekly-card_dates_num {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+.weekly-card_icon {
+  width: 55px;
+  height: 55px;
+}
+.weekly-card_name {
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  font-size: 20px;
+  font-weight: var(--fw-light);
+}
+.weekly-card_temp {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: var(--fw-light);
+}
