@@ -33,6 +33,10 @@ img {
   margin: 0px auto;
   font-family: "Roboto", sans-serif;
 }
+.main {
+  padding-top: 100px;
+  background-color: var(--bg-color-gray-500);
+}
 
 .outer {
   width: 100%;
@@ -47,4 +51,13 @@ img {
 .icon {
   width: 14px;
   height: 14px;
+}
+.section {
+  margin-bottom: 65px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  background-color: var(--bg-color-white);
+}
+.rain-rate {
 }

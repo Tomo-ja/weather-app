@@ -6,10 +6,7 @@ import WeatherWeekly from "./WeatherWeekly";
 
 export default function Main (){
 	return(
-		<main>
-			<div>
-				weather icon will be here
-			</div>
+		<main className="main outer">
 			<WeatherNow />
 			<WeatherHourly />
 			<WeatherWeekly />

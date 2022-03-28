@@ -1,0 +1,75 @@
+.weather-now {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 200px;
+}
+.weather-now_weather-icon-area {
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 50%;
+  background-color: var(--bg-color-white);
+}
+.weather-now_weather-icon-area-icon {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+}
+.weather-now_temp-box {
+  margin-top: auto;
+}
+.weather-now_temp-box_now {
+  margin: auto auto 0 0;
+  font-size: 36px;
+}
+.weather-now_temp-box_now-temp {
+  font-size: 78px;
+}
+.weather-now_temp-box_temp {
+  display: inline-flex;
+  margin: 0 10px 0 0;
+}
+.weather-now_temp-box_temp-arrow {
+  width: 10px;
+  height: 16px;
+  margin-right: 5px;
+}
+.weather-now_temp-box_temp-arrow-high {
+  filter: invert(76%) sepia(47%) saturate(6487%) hue-rotate(351deg)
+    brightness(100%) contrast(96%);
+  transform: rotate(180deg);
+}
+.weather-now_temp-box_temp-arrow-low {
+  filter: invert(34%) sepia(83%) saturate(3053%) hue-rotate(222deg)
+    brightness(100%) contrast(96%);
+}
+.weather-now_details {
+  text-align: right;
+  font-size: 16px;
+  font-weight: var(--fw-light);
+}
+.weather-now_details_time {
+  margin-top: 0px;
+  margin-bottom: 75px;
+}
+.weather-now_details_name {
+  margin-bottom: 13px;
+  font-size: 28px;
+}
+.weather-now_details_rate {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+.weather-now_details_rate_icon {
+  position: relative;
+  top: 1px;
+  display: inline;
+  width: 11px;
+  height: 15px;
+  margin-right: 5px;
+  filter: invert(34%) sepia(83%) saturate(3053%) hue-rotate(222deg)
+    brightness(100%) contrast(96%);
+}
