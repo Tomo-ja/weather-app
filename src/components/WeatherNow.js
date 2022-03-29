@@ -14,7 +14,7 @@ export default function WeatherNow(){
 	const getCurrentWeatherData = ()=>{
 		return new Promise ((resolve, reject)=>{
 			try{
-				const data = currentWeatherApi.get(`data/2.5/weather?lat=35&lon=139&appid=748752212852e7cf71bcfcf6066d4ab0`)
+				const data = currentWeatherApi.get(`data/2.5/weather?lat=33.44&lon=-94.04&appid=748752212852e7cf71bcfcf6066d4ab0`)
 				return resolve(data)
 			}catch(err){
 				return reject(err)
