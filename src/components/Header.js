@@ -7,18 +7,22 @@ import reloadIcon from '../images/icon_reload.svg'
 
 
 export default function Header(props){
+
 	const [locationNow, setLocationNow] = React.useState({});
 	const [openSetLocation, setOpenSetLocation] = React.useState(false)
 
+	// recall the location user set last time and assign to the state
 	React.useEffect(()=>{
 		const locationInfo = JSON.parse(localStorage.getItem("locationInfo")) 
 		setLocationNow(locationInfo)
 	}, [])
 
+	// memorize the current location on browser local storage
 	React.useEffect(()=>{
 		localStorage.setItem("locationInfo", JSON.stringify(locationNow))
 	}, [locationNow])
 
+	// get location's geo information based on the name of city
 	const getLocation = async()=>{
 		try{
 		  const location = await setLocationApi.get('geo/1.0/direct?q=London&limit=&appid=748752212852e7cf71bcfcf6066d4ab0')
