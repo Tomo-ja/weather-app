@@ -1,6 +1,6 @@
 
 
-export default function WeatherHourlyCard(){
+export default function WeatherHourlyCard(props){
 	return(
 		<div className="hourly-card">
 			<p className="hourly-card_time">1 PM</p>

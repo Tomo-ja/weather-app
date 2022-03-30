@@ -22,6 +22,7 @@ export default function Header(props){
 		localStorage.setItem("locationInfo", JSON.stringify(locationNow))
 	}, [locationNow])
 
+	
 	// get location's geo information based on the name of city
 	const getLocation = async()=>{
 		try{

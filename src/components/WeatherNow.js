@@ -8,7 +8,7 @@ import '../css/weatherNow.css'
 import { TimeOfUpdateData } from '../App';
 
 export default function WeatherNow(){
-	
+
 	const updateTime = React.useContext(TimeOfUpdateData)
 
 	const [currentWeather, sectCurrentWeather] = React.useState({})
@@ -17,7 +17,7 @@ export default function WeatherNow(){
 	const getCurrentWeatherData = ()=>{
 		return new Promise ((resolve, reject)=>{
 			try{
-				const data = currentWeatherApi.get(`data/2.5/weather?lat=33.44&lon=-94.04&appid=748752212852e7cf71bcfcf6066d4ab0`)
+				const data = currentWeatherApi.get(`data/2.5/weather?lat=49&lon=-123&appid=748752212852e7cf71bcfcf6066d4ab0`)
 				return resolve(data)
 			}catch(err){
 				return reject(err)
@@ -28,6 +28,7 @@ export default function WeatherNow(){
 	React.useEffect(()=>{
 		const data = getCurrentWeatherData()
 		data.then(res=>{
+			console.log(res.data.coord.lat)
 			const capitalCondition = res.data.weather[0].description[0].toUpperCase() + res.data.weather[0].description.slice(1)
 			sectCurrentWeather({
 				"condition": capitalCondition,
