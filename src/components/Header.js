@@ -1,5 +1,4 @@
 import React from "react";
-import { Transition } from "react-transition-group";
 import setLocationApi from '../apis/setLocation'
 import SetLocation from "./SetLocation";
 
@@ -7,14 +6,13 @@ import '../css/header.css';
 import reloadIcon from '../images/icon_reload.svg'
 
 
-export default function Header(){
+export default function Header(props){
 	const [locationNow, setLocationNow] = React.useState({});
 	const [openSetLocation, setOpenSetLocation] = React.useState(false)
 
 	React.useEffect(()=>{
 		const locationInfo = JSON.parse(localStorage.getItem("locationInfo")) 
 		setLocationNow(locationInfo)
-		console.log(locationInfo)
 	}, [])
 
 	React.useEffect(()=>{
@@ -38,7 +36,6 @@ export default function Header(){
 
 	  const toggleOpenSetLocation = ()=>{
 		setOpenSetLocation(!openSetLocation)
-		console.log(openSetLocation)
 	  }
 	
 	return(
@@ -52,7 +49,7 @@ export default function Header(){
 			<img 	className="icon header_icon-reload"
 					src= {reloadIcon} 
 					alt="reload icon"
-					onClick={getLocation} />
+					onClick={props.timeUpdate} />
 			{openSetLocation && <SetLocation />}
 		</div>
 	)
