@@ -2,14 +2,17 @@ import React from 'react';
 
 import currentWeatherApi from '../apis/currentWeather';
 import changerKtoC from '../functions/changerKtoC'
-import getDateNow from '../functions/getDateNow'
 import arrowIcon from '../images/icon_arrow.svg'
 import rainIcon from '../images/icon_drop-rain.svg'
 import '../css/weatherNow.css'
+import { TimeOfUpdateData } from '../App';
 
 export default function WeatherNow(){
+	
+	const updateTime = React.useContext(TimeOfUpdateData)
+
 	const [currentWeather, sectCurrentWeather] = React.useState({})
-	const [updateTime, setUpdateTime] = React.useState({})
+
 
 	const getCurrentWeatherData = ()=>{
 		return new Promise ((resolve, reject)=>{
@@ -34,7 +37,6 @@ export default function WeatherNow(){
 				"humidity": res.data.main.humidity,
 			  })
 		})
-		setUpdateTime(getDateNow)
 	}, [])
 
 	return(
@@ -71,7 +73,7 @@ export default function WeatherNow(){
 				</p>
 			</div>
 			<div className="weather-now_details">
-				<p className="weather-now_details_time">{updateTime.week}, {updateTime.hour}:{updateTime.min}</p>
+				<p className="weather-now_details_time">{updateTime.week}, {updateTime.hour}:{updateTime.min} {updateTime.amOrPm}</p>
 				<p className="weather-now_details_name">{currentWeather.condition}</p>
 				<p className="weather-now_details_rate rain-rate">
 					<img 	className="weather-now_details_rate_icon"

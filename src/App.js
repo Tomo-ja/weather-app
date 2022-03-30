@@ -6,7 +6,7 @@ import getDateNow from './functions/getDateNow'
 
 import './App.css';
 
-export const WeatherData = React.createContext()
+export const TimeOfUpdateData = React.createContext()
 
 
 
@@ -15,13 +15,19 @@ function App() {
 
   const timeUpdate = ()=>{
 		setUpdateTime(getDateNow)
-    console.log(updateTime)
 	}
+
+  // get the time when user open this app
+  React.useEffect(()=>{
+    timeUpdate()
+  }, [])
 
   return (
     <div className="app">
       <Header timeUpdate={timeUpdate}/>
-      <Main updateTime={updateTime}/>
+      <TimeOfUpdateData.Provider value={updateTime}>
+        <Main updateTime={updateTime}/>
+      </TimeOfUpdateData.Provider>
       <Footer />
     </div>
   );
