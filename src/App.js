@@ -26,7 +26,7 @@ function App() {
     <div className="app">
       <Header timeUpdate={timeUpdate}/>
       <TimeOfUpdateData.Provider value={updateTime}>
-        <Main updateTime={updateTime}/>
+        <Main />
       </TimeOfUpdateData.Provider>
       <Footer />
     </div>

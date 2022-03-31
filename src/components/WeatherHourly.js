@@ -9,6 +9,18 @@ import { TimeOfUpdateData } from "../App";
 export default function WeatherHourly(){
 
 		const updateTime = React.useContext(TimeOfUpdateData)
+		let hours = []
+		let hour = updateTime.hour
+		let isAm = updateTime.amOrPm === "AM" ? true : false
+		while(hours.length < 24){
+			hour ++
+			if(hour === 13){
+				hour = 1
+				isAm = !isAm
+			}
+			hours.push(`${hour} ${isAm ? "AM": "PM"}`)
+			console.log(hours)
+		}
 
 		const [hourlyWeather, setHourlyWeather] = React.useState([])
 		const elementHourlyWeather = {}
@@ -39,6 +51,7 @@ export default function WeatherHourly(){
 			})
 		}, [updateTime])
 	// .clouds .temp .weather[0].description
+	//have to create the element object
 	
 
 	return(
