@@ -10,8 +10,6 @@ export default function WeatherHourly(){
 
 		const updateTime = React.useContext(TimeOfUpdateData)
 		const [hourlyWeather, setHourlyWeather] = React.useState([])
-		const elementHourlyWeather = {}
-
 
 		// based on the current time declare next 24 hours and put in an array
 		let hours = []
@@ -49,24 +47,23 @@ export default function WeatherHourly(){
 					res.data.hourly[i],
 				]))
 			})
-			.then(res=>{
-				console.log(hourlyWeather)
-			})
 		}, [updateTime])
 	// .clouds .temp .weather[0].description
 	//have to create the element object
-	
+	const elementHourlyWeather = hourlyWeather.map((weather, index) =>{
+		return(
+			<WeatherHourlyCard
+				key={hours[index]}
+				hours={hours[index]}
+				weatherInfo={weather}
+			/>
+		)
+	})
 
 	return(
 		<section className="outer section weather-hourly">
-			<WeatherHourlyCard hours={hours[1]} weatherInfo={hourlyWeather[0]}/>
-			{/* <WeatherHourlyCard />
-			<WeatherHourlyCard />
-			<WeatherHourlyCard />
-			<WeatherHourlyCard />
-			<WeatherHourlyCard />
-			<WeatherHourlyCard />
-			<WeatherHourlyCard /> */}
+			{/* <WeatherHourlyCard hours={hours[1]} weatherInfo={hourlyWeather[0]}/> */}
+			{elementHourlyWeather }
 		</section>
 	)
 }
