@@ -9,6 +9,11 @@ import { TimeOfUpdateData } from "../App";
 export default function WeatherHourly(){
 
 		const updateTime = React.useContext(TimeOfUpdateData)
+		const [hourlyWeather, setHourlyWeather] = React.useState([])
+		const elementHourlyWeather = {}
+
+
+		// based on the current time declare next 24 hours and put in an array
 		let hours = []
 		let hour = updateTime.hour
 		let isAm = updateTime.amOrPm === "AM" ? true : false
@@ -19,12 +24,9 @@ export default function WeatherHourly(){
 				isAm = !isAm
 			}
 			hours.push(`${hour} ${isAm ? "AM": "PM"}`)
-			console.log(hours)
 		}
 
-		const [hourlyWeather, setHourlyWeather] = React.useState([])
-		const elementHourlyWeather = {}
-
+		//access api
 		const getHourlyWeather = ()=>{
 			return new Promise ((resolve, reject)=>{
 				try{
@@ -40,6 +42,7 @@ export default function WeatherHourly(){
 		React.useEffect(()=>{
 			const data = getHourlyWeather()
 			data.then(res=>{
+				setHourlyWeather([])
 				for(let i=1; i<25; i++)
 				setHourlyWeather(prev => ([
 					...prev,
@@ -56,14 +59,14 @@ export default function WeatherHourly(){
 
 	return(
 		<section className="outer section weather-hourly">
+			<WeatherHourlyCard hours={hours[1]} weatherInfo={hourlyWeather[0]}/>
+			{/* <WeatherHourlyCard />
 			<WeatherHourlyCard />
 			<WeatherHourlyCard />
 			<WeatherHourlyCard />
 			<WeatherHourlyCard />
 			<WeatherHourlyCard />
-			<WeatherHourlyCard />
-			<WeatherHourlyCard />
-			<WeatherHourlyCard />
+			<WeatherHourlyCard /> */}
 		</section>
 	)
 }
