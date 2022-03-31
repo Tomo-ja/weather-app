@@ -48,8 +48,8 @@ export default function WeatherHourly(){
 				]))
 			})
 		}, [updateTime])
-	// .clouds .temp .weather[0].description
-	//have to create the element object
+
+	// create each hour's weather card
 	const elementHourlyWeather = hourlyWeather.map((weather, index) =>{
 		return(
 			<WeatherHourlyCard
@@ -62,7 +62,6 @@ export default function WeatherHourly(){
 
 	return(
 		<section className="outer section weather-hourly">
-			{/* <WeatherHourlyCard hours={hours[1]} weatherInfo={hourlyWeather[0]}/> */}
 			{elementHourlyWeather }
 		</section>
 	)
