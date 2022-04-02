@@ -13,7 +13,7 @@ import { TimeOfUpdateData } from '../App';
 export default function WeatherNow(){
 
 	const updateTime = React.useContext(TimeOfUpdateData)
-	const [currentWeather, sectCurrentWeather] = React.useState({})
+	const [currentWeather, sectCurrentWeather] = React.useState({"condition":"init"})
 
 
 	const getCurrentWeatherData = ()=>{
