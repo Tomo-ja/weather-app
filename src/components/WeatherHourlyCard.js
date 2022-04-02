@@ -8,7 +8,7 @@ export default function WeatherHourlyCard(props){
 			<img className="hourly-card_icon"
 				src={`${process.env.PUBLIC_URL}/images/icon_weather_moon.png`}
 				alt="icon"/>
-			<p className="hourly-card_rate rain-rate">{props.weatherInfo.clouds}%</p>
+			<p className="hourly-card_rate rain-rate">{Math.round(props.weatherInfo.pop * 100)}%</p>
 		</div>
 	)
 }
