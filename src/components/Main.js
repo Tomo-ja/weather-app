@@ -1,7 +1,7 @@
 import React from "react";
 import WeatherNow from "./WeatherNow";
 import WeatherHourly from "./WeatherHourly";
-import WeatherWeekly from "./WeatherWeekly";
+import WeatherWeekly from "./Weatherdaily";
 
 
 export default function Main (){

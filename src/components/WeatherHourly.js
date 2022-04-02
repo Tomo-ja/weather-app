@@ -1,7 +1,6 @@
 import React from "react"
 import futureWeatherApi from "../apis/futureWeather";
 
-
 import WeatherHourlyCard from "./WeatherHourlyCard"
 import '../css/weatherHourly.css'
 import { TimeOfUpdateData } from "../App";
@@ -12,7 +11,7 @@ export default function WeatherHourly(){
 		const [hourlyWeather, setHourlyWeather] = React.useState([])
 
 		// based on the current time declare next 24 hours and put in an array
-		let hours = []
+		const hours = []
 		let hour = updateTime.hour
 		let isAm = updateTime.amOrPm === "AM" ? true : false
 		while(hours.length < 24){

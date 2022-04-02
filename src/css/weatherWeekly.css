@@ -1,41 +1,41 @@
-.weather-weekly {
+.weather-daily {
   padding-top: 20px;
 }
-.weekly-card {
+.daily-card {
   display: flex;
   align-items: center;
   padding-top: 15px;
   padding-bottom: 15px;
   border-bottom: 1px var(--border-color-gray) dashed;
 }
-.weekly-card_dates {
+.daily-card_dates {
   margin-right: 30px;
 }
-.weekly-card_date {
+.daily-card_date {
   text-align: center;
 }
-.weekly-card_dates_name {
+.daily-card_dates_name {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 20px;
 }
-.weekly-card_dates_num {
+.daily-card_dates_num {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 14px;
 }
-.weekly-card_icon {
+.daily-card_icon {
   width: 55px;
   height: 55px;
 }
-.weekly-card_name {
+.daily-card_name {
   margin-top: 0;
   margin-right: auto;
   margin-bottom: 0;
   font-size: 20px;
   font-weight: var(--fw-light);
 }
-.weekly-card_temp {
+.daily-card_temp {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 18px;
