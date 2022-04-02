@@ -5,17 +5,19 @@ import futureWeatherApi from "../apis/futureWeather";
 import WeatherDailyCard from "./WeatherDailyCard"
 import "../css/weatherWeekly.css"
 import { TimeOfUpdateData } from "../App";
+import { LocationInfo } from '../App';
 
 
 export default function WeatherWeekly(){
 	const updateTime = React.useContext(TimeOfUpdateData)
+	const locationInfo = React.useContext(LocationInfo)
 	const [dailyWeather, setDailyWeather] = React.useState([])
 
 	//access api to get daily date
 	const getDailyWeather = () =>{
 		return new Promise ((resolve, reject) => {
 			try{
-				const data = futureWeatherApi.get(`data/2.5/onecall?lat=35&lon=139&exclude=current,hourly,minutely,alerts&appid=748752212852e7cf71bcfcf6066d4ab0`)
+				const data = futureWeatherApi.get(`data/2.5/onecall?lat=${Math.round(locationInfo.lat)}&lon=${Math.round(locationInfo.lon)}&exclude=current,hourly,minutely,alerts&appid=748752212852e7cf71bcfcf6066d4ab0`)
 				return resolve(data)
 			}catch(err){
 				return reject(err)

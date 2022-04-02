@@ -4,10 +4,12 @@ import futureWeatherApi from "../apis/futureWeather";
 import WeatherHourlyCard from "./WeatherHourlyCard"
 import '../css/weatherHourly.css'
 import { TimeOfUpdateData } from "../App";
+import { LocationInfo } from '../App';
 
 export default function WeatherHourly(){
 
 		const updateTime = React.useContext(TimeOfUpdateData)
+		const locationInfo = React.useContext(LocationInfo)
 		const [hourlyWeather, setHourlyWeather] = React.useState([])
 
 		// based on the current time declare next 24 hours and put in an array
@@ -27,7 +29,7 @@ export default function WeatherHourly(){
 		const getHourlyWeather = ()=>{
 			return new Promise ((resolve, reject)=>{
 				try{
-					const data = futureWeatherApi.get(`data/2.5/onecall?lat=35&lon=139&exclude=current,minutely,daily,alerts&appid=748752212852e7cf71bcfcf6066d4ab0`)
+					const data = futureWeatherApi.get(`data/2.5/onecall?lat=${Math.round(locationInfo.lat)}&lon=${Math.round(locationInfo.lon)}&exclude=current,minutely,daily,alerts&appid=748752212852e7cf71bcfcf6066d4ab0`)
 					return resolve(data)
 				}catch(err){
 					return reject(err)
