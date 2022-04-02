@@ -9,17 +9,19 @@ import rainIcon from '../images/icon_drop-rain.svg'
 import '../css/weatherNow.css'
 
 import { TimeOfUpdateData } from '../App';
+import { LocationInfo } from '../App';
 
 export default function WeatherNow(){
 
 	const updateTime = React.useContext(TimeOfUpdateData)
+	const locationInfo = React.useContext(LocationInfo)
 	const [currentWeather, sectCurrentWeather] = React.useState({"condition":"init"})
 
 
 	const getCurrentWeatherData = ()=>{
 		return new Promise ((resolve, reject)=>{
 			try{
-				const data = currentWeatherApi.get(`data/2.5/weather?lat=49&lon=-123&appid=748752212852e7cf71bcfcf6066d4ab0`)
+				const data = currentWeatherApi.get(`data/2.5/weather?lat=${Math.round(locationInfo.lat)}&lon=${Math.round(locationInfo.lon)}&appid=748752212852e7cf71bcfcf6066d4ab0`)
 				return resolve(data)
 			}catch(err){
 				return reject(err)
@@ -32,6 +34,7 @@ export default function WeatherNow(){
 		data.then(res=>{
 			const capitalCondition = res.data.weather[0].description[0].toUpperCase() + res.data.weather[0].description.slice(1)
 			sectCurrentWeather({
+				"icon": res.data.weather[0].icon,
 				"condition": capitalCondition,
 				"temperature": res.data.main.temp,
 				"temperatureMax": res.data.main.temp_max,
@@ -46,7 +49,7 @@ export default function WeatherNow(){
 			<div className="weather-now_weather-icon-area">
 				<img 
 					className="weather-now_weather-icon-area-icon"
-					src={`${process.env.PUBLIC_URL}/${returnWeatherIcon(currentWeather.condition)}`}
+					src={`${process.env.PUBLIC_URL}/${returnWeatherIcon(currentWeather.icon)}`}
 					alt="weather icon" 
 				/>
 			</div>

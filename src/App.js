@@ -7,15 +7,17 @@ import getDateNow from './functions/getDateNow'
 import './App.css';
 
 export const TimeOfUpdateData = React.createContext()
-export const LocationsInfo = React.createContext()
+export const LocationInfo = React.createContext()
 
 
 
 function App() {
   const [updateTime, setUpdateTime] = React.useState({})
-  const [locations, setLocations] = React.useState({
-      "current": "London",
-      "registered": []
+  const [currentLocation, setCurrentLocation] = React.useState({
+    "cityName": "London",
+    "country": "GB",
+    "lat": 51.5073219,
+    "lon": -0.1276474
   })
 
   const timeUpdate = ()=>{
@@ -30,12 +32,12 @@ function App() {
   return (
     <div className="app">
       <Header timeUpdate={timeUpdate}
-              locations={locations}
-              registerLocation={setLocations}/>
+              currentLocation={currentLocation}
+              setCurrentLocation={setCurrentLocation}/>
       <TimeOfUpdateData.Provider value={updateTime}>
-      <LocationsInfo.Provider value={locations.current}>
+      <LocationInfo.Provider value={currentLocation}>
         <Main />
-      </LocationsInfo.Provider>
+      </LocationInfo.Provider>
       </TimeOfUpdateData.Provider>
       <Footer />
     </div>

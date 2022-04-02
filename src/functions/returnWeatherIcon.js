@@ -1,24 +1,30 @@
-export default function returnWeatherIcon(description){
-	const weather = description.toLowerCase()
+export default function returnWeatherIcon(icon){
 	const base = "images/icon_weather_"
-	switch (weather) {
-		case "clear sky":
+	switch (icon) {
+		case "01d":
+		case "01n":
 			return `${base}sunny.png`
-		case "few clouds":
+		case "02d":
+		case "02n":
 			return `${base}sunny-cloud.png`
-		case "scattered clouds":
+		case "03d":
+		case "03n":
+		case "04d":
+		case "04n":
 			return `${base}cloud.png`
-		case "broken clouds":
-			return `${base}cloud.png`
-		case "shower rain":
+		case "09d":
+		case "09n":
+		case "10d":
+		case "10n":
 			return `${base}rain.png`
-		case "rain":
-			return `${base}rain.png`
-		case "thunderstorm":
+		case "11d":
+		case "11n":
 			return `${base}rain-thunder.png`
-		case "snow":
+		case "13d":
+		case "13n":
 			return `${base}snow.png`
-		case "mist":
+		case "50d":
+		case "50n":
 			return `${base}mist.png`
 		default:
 			return `${base}unknown.png`
