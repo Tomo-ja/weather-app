@@ -2,15 +2,17 @@ import React from 'react';
 
 import currentWeatherApi from '../apis/currentWeather';
 import changerKtoC from '../functions/changerKtoC'
+import returnWeatherIcon from '../functions/returnWeatherIcon';
+
 import arrowIcon from '../images/icon_arrow.svg'
 import rainIcon from '../images/icon_drop-rain.svg'
 import '../css/weatherNow.css'
+
 import { TimeOfUpdateData } from '../App';
 
 export default function WeatherNow(){
 
 	const updateTime = React.useContext(TimeOfUpdateData)
-
 	const [currentWeather, sectCurrentWeather] = React.useState({})
 
 
@@ -28,7 +30,6 @@ export default function WeatherNow(){
 	React.useEffect(()=>{
 		const data = getCurrentWeatherData()
 		data.then(res=>{
-			console.log(res.data.coord.lat)
 			const capitalCondition = res.data.weather[0].description[0].toUpperCase() + res.data.weather[0].description.slice(1)
 			sectCurrentWeather({
 				"condition": capitalCondition,
@@ -45,7 +46,7 @@ export default function WeatherNow(){
 			<div className="weather-now_weather-icon-area">
 				<img 
 					className="weather-now_weather-icon-area-icon"
-					src={`${process.env.PUBLIC_URL}/images/icon_weather_rain.png`}
+					src={`${process.env.PUBLIC_URL}/${returnWeatherIcon(currentWeather.condition)}`}
 					alt="weather icon" 
 				/>
 			</div>
