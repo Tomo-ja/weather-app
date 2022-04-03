@@ -1,5 +1,6 @@
 import React from "react"
 import futureWeatherApi from "../apis/futureWeather";
+import getNext7Days from "../functions/getNext7Days";
 
 
 import WeatherDailyCard from "./WeatherDailyCard"
@@ -12,6 +13,7 @@ export default function WeatherWeekly(){
 	const updateTime = React.useContext(TimeOfUpdateData)
 	const locationInfo = React.useContext(LocationInfo)
 	const [dailyWeather, setDailyWeather] = React.useState([])
+	const [comingWeek, setComingWeek] = React.useState(getNext7Days())
 
 	//access api to get daily date
 	const getDailyWeather = () =>{
@@ -25,20 +27,8 @@ export default function WeatherWeekly(){
 		})
 	}
 
-	//set next 7 days day number and day name when user update the date
-	let days = [{"dayNum": 0, "dayName": 0}]
-	let day = new Date()
-	const addDate = 1
-	const addDateTill = 7
-	const weekName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-
 	React.useEffect(()=>{
-		days = []
-		day = new Date()
-		for (let i = 1; i<= addDateTill; i++){
-			day.setDate(day.getDate() + addDate)
-			days.push({"dayNum": day.getDate(), "dayName": weekName[day.getDay()]})
-		}
+		setComingWeek(getNext7Days())
 	}, [updateTime])
 
 	React.useEffect(()=>{
@@ -56,19 +46,19 @@ export default function WeatherWeekly(){
 
 	const elementDailyWeather = dailyWeather.map((weather, index) =>{
 		return(
-			<WeatherDailyCard
-			key={weather}
-			dayNum="1"
-			dayName="wed"
-			weatherInfo={weather}
-		/>
+		// 	<WeatherDailyCard
+		// 	key={weather}
+		// 	dayNum="1"
+		// 	dayName="wed"
+		// 	weatherInfo={weather}
+		// />
 
-			// <WeatherDailyCard
-			// 	key={days[index].dayNum}
-			// 	dayNum={days[index].dayNum}
-			// 	dayName={days[index].dayName}
-			// 	weatherInfo={weather}
-			// />
+			<WeatherDailyCard
+				key={comingWeek[index].dayNum}
+				dayNum={comingWeek[index].dayNum}
+				dayName={comingWeek[index].dayName}
+				weatherInfo={weather}
+			/>
 		)
 	})
 

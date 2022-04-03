@@ -3,7 +3,6 @@ import returnWeatherIcon from '../functions/returnWeatherIcon';
 
 
 export default function WeatherHourlyCard(props){
-	console.log(props.weatherInfo)
 	return(
 		<div className="hourly-card">
 			<p className="hourly-card_time">{props.hours}</p>
