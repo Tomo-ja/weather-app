@@ -1,3 +1,5 @@
+import changerKtoC from "../functions/changerKtoC"
+import returnWeatherIcon from '../functions/returnWeatherIcon';
 
 
 export default function WeatherDailyCard(props){
@@ -8,10 +10,10 @@ export default function WeatherDailyCard(props){
 				<p className="daily-card_date daily-card_dates_num">{props.dayNum}</p>
 			</div>
 			<img className="daily-card_icon"
-				src={`${process.env.PUBLIC_URL}/images/icon_weather_moon.png`}
+				src={`${process.env.PUBLIC_URL}/${returnWeatherIcon(props.weatherInfo.weather[0].icon)}`}
 				alt="icon"/>
-			<p className="daily-card_name">{props.weatherInfo.weather.description}</p>
-			<p className="daily-card_temp">{props.weatherInfo.temp.max}°c / {props.weatherInfo.temp.min}°c</p>
+			<p className="daily-card_name">{props.weatherInfo.weather[0].description}</p>
+			<p className="daily-card_temp">{changerKtoC(props.weatherInfo.temp.max)}°c / {changerKtoC(props.weatherInfo.temp.min)}°c</p>
 		</div>
 	)
 }

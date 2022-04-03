@@ -21,7 +21,7 @@ export default function WeatherNow(){
 	const getCurrentWeatherData = ()=>{
 		return new Promise ((resolve, reject)=>{
 			try{
-				const data = currentWeatherApi.get(`data/2.5/weather?lat=${Math.round(locationInfo.lat)}&lon=${Math.round(locationInfo.lon)}&appid=748752212852e7cf71bcfcf6066d4ab0`)
+				const data = currentWeatherApi.get(`data/2.5/weather?lat=${Math.round(locationInfo.lat)}&lon=${Math.round(locationInfo.lon)}&appid=7c946d2ea4cdcba86920391803ac6ba1`)
 				return resolve(data)
 			}catch(err){
 				return reject(err)
@@ -42,7 +42,7 @@ export default function WeatherNow(){
 				"humidity": res.data.main.humidity,
 			  })
 		})
-	}, [])
+	}, [locationInfo])
 
 	return(
 		<section className="outer section weather-now">

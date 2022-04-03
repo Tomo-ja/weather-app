@@ -46,20 +46,6 @@ export default function Header(props){
 		localStorage.setItem("registeredLocations", JSON.stringify(registeredLocations))
 	}, [registeredLocations])
 
-	
-	// get location's geo information based on the name of city
-	const getLocation = async()=>{
-		try{
-		  const location = await setLocationApi.get('geo/1.0/direct?q=London&limit=&appid=748752212852e7cf71bcfcf6066d4ab0')
-		  const { name, country, lat, lon} = location.data[0]
-		}catch(err){
-		  console.log(err)
-		}
-	  }
-
-	  const test = ()=>{
-		  console.log(props.currentLocation.cityName)
-	  }
 
 	  const toggleOpenSetLocation = ()=>{
 		setOpenSetLocations(!openSetLocations)
@@ -77,8 +63,13 @@ export default function Header(props){
 					src= {reloadIcon} 
 					alt="reload icon"
 					onClick={props.timeUpdate} />
-			<p onClick={test}>click here</p>
-			{openSetLocations && <SetLocation />}
+			{openSetLocations && <SetLocation 
+									registeredLocations={registeredLocations}
+									setRegisteredLocations={setRegisteredLocations}
+									currentLocation={props.currentLocation}
+									setCurrentLocation={props.setCurrentLocation}
+									/>
+			}
 		</div>
 	)
 }

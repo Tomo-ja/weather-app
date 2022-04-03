@@ -3,7 +3,7 @@ import futureWeatherApi from "../apis/futureWeather";
 
 
 import WeatherDailyCard from "./WeatherDailyCard"
-import "../css/weatherWeekly.css"
+import "../css/weatherDaily.css"
 import { TimeOfUpdateData } from "../App";
 import { LocationInfo } from '../App';
 
@@ -17,7 +17,7 @@ export default function WeatherWeekly(){
 	const getDailyWeather = () =>{
 		return new Promise ((resolve, reject) => {
 			try{
-				const data = futureWeatherApi.get(`data/2.5/onecall?lat=${Math.round(locationInfo.lat)}&lon=${Math.round(locationInfo.lon)}&exclude=current,hourly,minutely,alerts&appid=748752212852e7cf71bcfcf6066d4ab0`)
+				const data = futureWeatherApi.get(`data/2.5/onecall?lat=${Math.round(locationInfo.lat)}&lon=${Math.round(locationInfo.lon)}&exclude=current,hourly,minutely,alerts&appid=7c946d2ea4cdcba86920391803ac6ba1`)
 				return resolve(data)
 			}catch(err){
 				return reject(err)
@@ -26,13 +26,14 @@ export default function WeatherWeekly(){
 	}
 
 	//set next 7 days day number and day name when user update the date
-	const days = []
+	let days = [{"dayNum": 0, "dayName": 0}]
 	let day = new Date()
 	const addDate = 1
 	const addDateTill = 7
 	const weekName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
 	React.useEffect(()=>{
+		days = []
 		day = new Date()
 		for (let i = 1; i<= addDateTill; i++){
 			day.setDate(day.getDate() + addDate)
@@ -56,11 +57,18 @@ export default function WeatherWeekly(){
 	const elementDailyWeather = dailyWeather.map((weather, index) =>{
 		return(
 			<WeatherDailyCard
-				key={days[index].dayNum}
-				dayNum={days[index].dayNum}
-				dayName={days[index].dayName}
-				weatherInfo={weather}
-			/>
+			key={weather}
+			dayNum="1"
+			dayName="wed"
+			weatherInfo={weather}
+		/>
+
+			// <WeatherDailyCard
+			// 	key={days[index].dayNum}
+			// 	dayNum={days[index].dayNum}
+			// 	dayName={days[index].dayName}
+			// 	weatherInfo={weather}
+			// />
 		)
 	})
 
