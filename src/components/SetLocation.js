@@ -84,6 +84,7 @@ export default function SetLocation(props){
 	const handleSubmit= (e) =>{
 		e.preventDefault()
 		const targetCity = inputCityName.cityName[0].toUpperCase() + inputCityName.cityName.slice(1)
+		document.getElementById('inputCityName').value = ""
 		const cityIndexNum = isCityRegistered(targetCity)
 		if (cityIndexNum < 0){
 			takeBackCurrentLocation()

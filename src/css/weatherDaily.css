@@ -12,6 +12,7 @@
   margin-right: 30px;
 }
 .daily-card_date {
+  width: 40px;
   text-align: center;
 }
 .daily-card_dates_name {
@@ -27,6 +28,7 @@
 .daily-card_icon {
   width: 55px;
   height: 55px;
+  margin-right: 10px;
 }
 .daily-card_name {
   margin-top: 0;
