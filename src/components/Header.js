@@ -24,14 +24,17 @@ export default function Header(props){
 		if(localStorage.getItem("registeredLocations")){
 			const locations = JSON.parse(localStorage.getItem("registeredLocations"))
 			locations.forEach(town=>{
-				setRegisteredLocations(prev => (
-					prev.push({
+				setRegisteredLocations(prev => {
+					const array = prev
+					array.push({
 						"cityName": town.cityName,
 						"country": town.country,
 						"lat": town.lat,
 						"lon": town.lon
 					})
-				))
+					return array
+				}
+				)
 			})
 		}
 	}, [])
@@ -44,11 +47,16 @@ export default function Header(props){
 	// memorize the registered locations on browser local storage
 	React.useEffect(()=>{
 		localStorage.setItem("registeredLocations", JSON.stringify(registeredLocations))
-	}, [registeredLocations])
+	}, [props.currentLocation])
 
 
 	  const toggleOpenSetLocation = ()=>{
 		setOpenSetLocations(!openSetLocations)
+		if (!openSetLocations){
+			document.getElementsByClassName("header_hamburger-menu_btn")[0].classList.add("hamburger-menu_active")
+		}else{
+			document.getElementsByClassName("header_hamburger-menu_btn")[0].classList.remove("hamburger-menu_active")
+		}
 	  }
 	
 	return(
@@ -68,6 +76,7 @@ export default function Header(props){
 									setRegisteredLocations={setRegisteredLocations}
 									currentLocation={props.currentLocation}
 									setCurrentLocation={props.setCurrentLocation}
+									handleForm={toggleOpenSetLocation}
 									/>
 			}
 		</div>

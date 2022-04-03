@@ -39,6 +39,18 @@
   top: 8px;
 }
 
+.hamburger-menu_active {
+  background-color: rgba(255, 255, 255, 0);
+}
+.hamburger-menu_active::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+.hamburger-menu_active::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
 /* to change cross mark from burger menu
 #menu-btn-check:checked ~ .menu-btn span {
     background-color: rgba(255, 255, 255, 0);メニューオープン時は真ん中の線を透明にする

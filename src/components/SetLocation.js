@@ -30,9 +30,7 @@ export default function SetLocation(props){
 
 	// check weather the city searched before or new
 	const isCityRegistered = (city)=>{
-		// console.log(props.registeredLocations)
 		const index = props.registeredLocations.findIndex(target => target.cityName === city)
-		// console.log(index)
 		return index
 	}
 
@@ -128,7 +126,7 @@ export default function SetLocation(props){
 			</form>
 			<div className="set-location_location-options current-location">
 				<h2 className="set-location_location-options_category">Current Location</h2>
-				<LocationCard city={props.currentLocation.cityName} country={props.currentLocation.country}/>
+				<LocationCard city={props.currentLocation.cityName} country={props.currentLocation.country} handleForm={props.handleForm}/>
 			</div>
 			<div className="set-location_location-options saved-location">
 				<h2 className="set-location_location-options_category set-location_location-options_saved">Saved Location</h2>
