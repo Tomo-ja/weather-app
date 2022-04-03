@@ -11,6 +11,7 @@ export default function SetLocation(props){
 
 	const [inputCityName, setInputCityName] = React.useState({"cityName": ""})
 
+	//update city name constantly
 	const handleInput = (e)=>{
 		setInputCityName({
 			"cityName": e.target.value
@@ -29,7 +30,7 @@ export default function SetLocation(props){
 		})
 	}
 
-	//過去に保存したことがあるか調べる。その後あれば今の場所と入れ替える
+	// check weather the city searched before or new
 	const isCityRegistered = (city)=>{
 		props.registeredLocations.forEach((cityInfo, index)=>{
 			if (cityInfo.cityName === city){
@@ -39,11 +40,30 @@ export default function SetLocation(props){
 		return false
 	}
 
-	const checkCityExist= async (e) =>{
-		e.preventDefault()
-		let targetCity = inputCityName.cityName[0].toUpperCase() + inputCityName.cityName.slice(1)
-		const data = await getLocationGeo(targetCity)
+	// set the register location to current location and do around way as well
+	const switchLocation = (arr) => {
+		// add current location into registered location
+		props.setRegisteredLocations(prev=>{
+			const array = prev
+			array.push(props.currentLocation)
+			return array
+		})
+		let indexNumber = arr
+		// if this event is occurred by click, search the index number in the registered location array
+		if (typeof(indexNumber) === "object"){
+			indexNumber = isCityRegistered(indexNumber.currentTarget.id)
+		}
+		// set target location as current location
+		props.setCurrentLocation(props.registeredLocations[indexNumber])
+		// delete target location from registered location array
+		props.setRegisteredLocations(prev =>{
+			const prevArray = prev
+			prevArray.splice(indexNumber, 1)
+		})
+	}
 
+	const registerNewLocation = async(targetCity) =>{
+		const data = await getLocationGeo(targetCity)
 		// deal with un-property name of city
 		if (data.data.length === 0){
 			alert("Sorry, We could not find your city")
@@ -58,10 +78,35 @@ export default function SetLocation(props){
 			"lat": lat,
 			"lon": lon
 		})
+	}
+
+	const handleSubmit= async (e) =>{
+		e.preventDefault()
+		const targetCity = inputCityName.cityName[0].toUpperCase() + inputCityName.cityName.slice(1)
+		const cityIndexNum = isCityRegistered(targetCity)
+		if (typeof(cityIndexNum) === "number"){
+			switchLocation(cityIndexNum)
+		}else if(cityIndexNum === false){
+			registerNewLocation(targetCity)
+		}
 		
 	}
 
+	let elementLocationCard = false
+	if (props.registeredLocations.length > 0){
+		elementLocationCard = props.registeredLocations.map(location=>{
+			return(
+				<LocationCard 
+						key={location.cityName}
+						city={location.cityName}
+						country={location.country}
+						handleClick={switchLocation}
+				/>
+			)
+		})
+	}
 
+	console.log(props.registeredLocations)
 	return(
 		<div className="set-location outer">
 			<form className="set-location_form">
@@ -75,7 +120,7 @@ export default function SetLocation(props){
 				<button 
 						type="submit"
 						className="set-location_form-item set-location_form_submit"
-						onClick={checkCityExist}>
+						onClick={handleSubmit}>
 						<img 	className="icon"
 								src={SearchIcon}
 								alt="icon" 
@@ -88,16 +133,7 @@ export default function SetLocation(props){
 			</div>
 			<div className="set-location_location-options saved-location">
 				<h2 className="set-location_location-options_category set-location_location-options_saved">Saved Location</h2>
-				<LocationCard city="Vancouver" country="Canada"/>
-				<LocationCard city="Vancouver" country="Canada"/>
-				<LocationCard city="Vancouver" country="Canada"/>
-				<LocationCard city="Vancouver" country="Canada"/>
-				<LocationCard city="Vancouver" country="Canada"/>
-				<LocationCard city="Vancouver" country="Canada"/>
-				<LocationCard city="Vancouver" country="Canada"/>
-				<LocationCard city="Vancouver" country="Canada"/>
-				<LocationCard city="Vancouver" country="Canada"/>
-				<LocationCard city="Vancouver" country="Canada"/>
+				{elementLocationCard && elementLocationCard}
 			</div>
 		</div>
 	)

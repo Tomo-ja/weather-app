@@ -48,7 +48,7 @@ export default function WeatherHourly(){
 					res.data.hourly[i],
 				]))
 			})
-		}, [updateTime])
+		}, [updateTime, locationInfo])
 
 	// create each hour's weather card
 	const elementHourlyWeather = hourlyWeather.map((weather, index) =>{

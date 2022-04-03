@@ -42,17 +42,10 @@ export default function WeatherWeekly(){
 				]))
 			}
 		})
-	}, [updateTime])
+	}, [updateTime, locationInfo])
 
 	const elementDailyWeather = dailyWeather.map((weather, index) =>{
 		return(
-		// 	<WeatherDailyCard
-		// 	key={weather}
-		// 	dayNum="1"
-		// 	dayName="wed"
-		// 	weatherInfo={weather}
-		// />
-
 			<WeatherDailyCard
 				key={comingWeek[index].dayNum}
 				dayNum={comingWeek[index].dayNum}

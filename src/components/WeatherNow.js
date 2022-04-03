@@ -42,7 +42,7 @@ export default function WeatherNow(){
 				"humidity": res.data.main.humidity,
 			  })
 		})
-	}, [locationInfo])
+	}, [updateTime,locationInfo])
 
 	return(
 		<section className="outer section weather-now">
