@@ -32,6 +32,7 @@ export default function Header(props){
 						"lat": town.lat,
 						"lon": town.lon
 					})
+					console.log("use Effect run")
 					return array
 				}
 				)

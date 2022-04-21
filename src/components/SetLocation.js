@@ -43,8 +43,10 @@ export default function SetLocation(props){
 		})
 	}
 
+
 	// set the registered location to current location
 	const switchLocation = (arr) => {
+
 		takeBackCurrentLocation()
 		let indexNumber = arr
 		// if this event is occurred by click, search the index number in the registered location array
@@ -104,6 +106,7 @@ export default function SetLocation(props){
 		)
 	})
 
+	console.log(props.registeredLocations)
 	return(
 		<div className="set-location outer">
 			<form className="set-location_form">
