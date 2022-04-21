@@ -43,11 +43,13 @@ export default function SetLocation(props){
 		})
 	}
 
+	// なぜかswitchLocationのline 62 が2回呼ばれる
 
 	// set the registered location to current location
 	const switchLocation = (arr) => {
-
-		takeBackCurrentLocation()
+		arr.preventDefault()
+		const tempPrevCurrentLocation = props.currentLocation
+		// takeBackCurrentLocation()
 		let indexNumber = arr
 		// if this event is occurred by click, search the index number in the registered location array
 		if (typeof(indexNumber) === "object"){
@@ -57,9 +59,10 @@ export default function SetLocation(props){
 		props.setCurrentLocation(props.registeredLocations[indexNumber])
 		// delete target location from registered location array
 		props.setRegisteredLocations(prev =>{
-			const prevArray = prev
-			prevArray.splice(indexNumber, 1)
-			return prevArray
+			const nextRegisteredLocation = prev
+			nextRegisteredLocation.splice(indexNumber, 1)
+			nextRegisteredLocation.push(tempPrevCurrentLocation)
+			return nextRegisteredLocation
 		})
 	}
 
