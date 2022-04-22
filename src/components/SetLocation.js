@@ -43,27 +43,25 @@ export default function SetLocation(props){
 		})
 	}
 
-	// なぜかswitchLocationのline 62 が2回呼ばれる
 
 	// set the registered location to current location
-	const switchLocation = (arr) => {
-		arr.preventDefault()
+	const switchLocation = (index, cityName = null) => {
 		const tempPrevCurrentLocation = props.currentLocation
-		// takeBackCurrentLocation()
-		let indexNumber = arr
+		let indexNumber = index
 		// if this event is occurred by click, search the index number in the registered location array
-		if (typeof(indexNumber) === "object"){
+		if (cityName){
 			indexNumber = isCityRegistered(indexNumber.currentTarget.id)
+		} else {
+			cityName = props.registeredLocations[indexNumber].cityName
 		}
 		// set target location as current location
 		props.setCurrentLocation(props.registeredLocations[indexNumber])
 		// delete target location from registered location array
 		props.setRegisteredLocations(prev =>{
-			const nextRegisteredLocation = prev
-			nextRegisteredLocation.splice(indexNumber, 1)
-			nextRegisteredLocation.push(tempPrevCurrentLocation)
-			return nextRegisteredLocation
+			const nextRegisteredLocation = prev.filter(loc => loc.cityName !== cityName)
+			return [...nextRegisteredLocation, tempPrevCurrentLocation]
 		})
+		props.handleForm()
 	}
 
 	const registerNewLocation = async(targetCity) =>{
@@ -92,10 +90,17 @@ export default function SetLocation(props){
 		if (cityIndexNum < 0){
 			takeBackCurrentLocation()
 			registerNewLocation(targetCity)
+			props.handleForm()
 		}else{
 			switchLocation(cityIndexNum)
 		}
-		
+	}
+
+	const deleteLocation = (e, cityName)=>{
+		props.setRegisteredLocations(prev => {
+			const nextRegisteredLocation = prev.filter(loc => loc.cityName !== cityName)
+			return [...nextRegisteredLocation]
+		})
 	}
 
 	const elementLocationCard = props.registeredLocations.map(location=>{
@@ -104,12 +109,12 @@ export default function SetLocation(props){
 					key={location.cityName}
 					city={location.cityName}
 					country={location.country}
-					handleClick={switchLocation}
+					handleClick={(e) => switchLocation(e, location.cityName)}
+					handleDelete={(e)=> deleteLocation(e, location.cityName)}
 			/>
 		)
 	})
 
-	console.log(props.registeredLocations)
 	return(
 		<div className="set-location outer">
 			<form className="set-location_form">

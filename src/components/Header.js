@@ -32,7 +32,6 @@ export default function Header(props){
 						"lat": town.lat,
 						"lon": town.lon
 					})
-					console.log("use Effect run")
 					return array
 				}
 				)
@@ -48,7 +47,7 @@ export default function Header(props){
 	// memorize the registered locations on browser local storage
 	React.useEffect(()=>{
 		localStorage.setItem("registeredLocations", JSON.stringify(registeredLocations))
-	}, [props.currentLocation])
+	}, [props.currentLocation, registeredLocations.length])
 
 
 	  const toggleOpenSetLocation = ()=>{
