@@ -32,6 +32,7 @@ img {
   width: 645px;
   margin: 0px auto;
   font-family: "Roboto", sans-serif;
+  overflow: hidden;
 }
 .main {
   padding-top: 100px;

@@ -116,7 +116,7 @@ export default function SetLocation(props){
 	})
 
 	return(
-		<div className="set-location outer">
+		<div className={`set-location outer ${props.isOpen ? "isOpen" : "isClose"}`}>
 			<form className="set-location_form">
 				<input 
 						id="inputCityName"

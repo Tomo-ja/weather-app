@@ -52,6 +52,7 @@ export default function Header(props){
 
 	  const toggleOpenSetLocation = ()=>{
 		setOpenSetLocations(!openSetLocations)
+		
 		if (!openSetLocations){
 			document.getElementsByClassName("header_hamburger-menu_btn")[0].classList.add("hamburger-menu_active")
 		}else{
@@ -71,14 +72,14 @@ export default function Header(props){
 					src= {reloadIcon} 
 					alt="reload icon"
 					onClick={props.timeUpdate} />
-			{openSetLocations && <SetLocation 
-									registeredLocations={registeredLocations}
-									setRegisteredLocations={setRegisteredLocations}
-									currentLocation={props.currentLocation}
-									setCurrentLocation={props.setCurrentLocation}
-									handleForm={toggleOpenSetLocation}
-									/>
-			}
+			<SetLocation 
+				isOpen ={openSetLocations}
+				registeredLocations={registeredLocations}
+				setRegisteredLocations={setRegisteredLocations}
+				currentLocation={props.currentLocation}
+				setCurrentLocation={props.setCurrentLocation}
+				handleForm={toggleOpenSetLocation}
+			/>
 		</div>
 	)
 }
